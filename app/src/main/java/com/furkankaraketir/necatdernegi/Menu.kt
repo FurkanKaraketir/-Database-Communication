@@ -1,14 +1,15 @@
 package com.furkankaraketir.necatdernegi
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
-import android.view.MenuInflater
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 
 class Menu : AppCompatActivity() {
@@ -18,6 +19,57 @@ class Menu : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_menu)
         auth = Firebase.auth
+        var currentUserEmail = ""
+        if (auth.currentUser != null) {
+            currentUserEmail = auth.currentUser!!.email.toString()
+        }
+        var adminEmail = ""
+
+        val aileBilgileriButton = findViewById<Button>(R.id.aileBilgileriButton)
+        val yardimlarVeDagitimButton = findViewById<Button>(R.id.yardimlarVeDagitimButton)
+        val yardimKumbarasiButton = findViewById<Button>(R.id.yardimKumbarasiButton)
+        val aileveYardimIstatistikleriButton =
+            findViewById<Button>(R.id.aileveYardimIstatistikleriButton)
+        val kullaniciIslemleriButton = findViewById<Button>(R.id.kullaniciIslemleriButton)
+
+        val db = Firebase.firestore
+
+        db.collection("Kullanicilar")
+            .get()
+            .addOnSuccessListener { result ->
+                for (document in result) {
+                    if (document["tip"].toString() == "Sistem Yöneticisi") {
+                        adminEmail = document["email"].toString()
+
+                    }
+                }
+            }
+
+        aileBilgileriButton.setOnClickListener {
+            TODO()
+        }
+
+        yardimlarVeDagitimButton.setOnClickListener {
+            TODO()
+        }
+
+        yardimKumbarasiButton.setOnClickListener {
+            TODO()
+        }
+
+        aileveYardimIstatistikleriButton.setOnClickListener {
+            TODO()
+        }
+
+        kullaniciIslemleriButton.setOnClickListener {
+            if (currentUserEmail == adminEmail) {
+                val intent = Intent(this, KullaniciIslemleriActivity::class.java)
+                startActivity(intent)
+            } else {
+                Toast.makeText(applicationContext, "Yetkili Değilsiniz...", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        }
 
     }
 
@@ -30,7 +82,7 @@ class Menu : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.signOut){
+        if (item.itemId == R.id.signOut) {
             auth.signOut()
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)

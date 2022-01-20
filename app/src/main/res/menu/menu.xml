@@ -3,6 +3,5 @@
 
     <item
         android:id="@+id/signOut"
-        android:title="Çıkış Yap"
-        />
+        android:title="@string/k_yap" />
 </menu>

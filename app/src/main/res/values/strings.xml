@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Necat Derneği</string>
+    <string name="kullanici_tanimlama">KULLANICI TANIMLAMA</string>
+    <string name="kullanici_b_lg_g_ncelleme_s_lme">KULLANICI BİLGİ GÜNCELLEME / SİLME</string>
+    <string name="yeni_kullan_c_bilgileri">Yeni Kullanıcı Bilgileri</string>
+    <string name="email">Email</string>
+    <string name="ifre">Şifre</string>
+    <string name="ad">Ad</string>
+    <string name="soyad">Soyad</string>
+    <string name="g_revi">Görevi</string>
+    <string name="adres">Adres</string>
+    <string name="telefon_ba_nda_0_ile">Telefon (Başında \'0\' ile)</string>
+    <string name="tip">Tip</string>
+    <string name="kaydet">KAYDET</string>
+    <string name="g_r">GİRİŞ</string>
+    <string name="a_le_b_lg_ler">AİLE BİLGİLERİ</string>
+    <string name="yardimlar_ve_da_itim">YARDIMLAR VE DAĞITIM</string>
+    <string name="yardim_kumbarasi">YARDIM KUMBARASI</string>
+    <string name="a_le_ve_yardim_stat_st_kler">AİLE VE YARDIM İSTATİSTİKLERİ</string>
+    <string name="kullanici_lemler">KULLANICI İŞLEMLERİ</string>
+    <string name="k_yap">Çıkış Yap</string>
 </resources>
