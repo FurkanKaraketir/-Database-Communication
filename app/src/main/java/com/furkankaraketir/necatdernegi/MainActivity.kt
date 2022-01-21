@@ -35,19 +35,36 @@ class MainActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener {
             val email = emailEditText.editText?.text.toString()
-            val password = passwordEditText.editText?.text.toString()
 
-            auth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        next()
-                    } else {
-                        Toast.makeText(
-                            baseContext, "Authentication failed.",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                    }
+            if (email.isEmpty()) {
+                emailEditText.error = "Email Alanı Boş Olamaz"
+            } else {
+                emailEditText.error = null
+
+                val password = passwordEditText.editText?.text.toString()
+
+                if (password.isEmpty()) {
+                    passwordEditText.error = "Şifre Alanı Boş Olamaz"
+                } else {
+                    passwordEditText.error = null
+
+                    auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(this) { task ->
+                            if (task.isSuccessful) {
+                                next()
+                            } else {
+                                Toast.makeText(
+                                    baseContext, "Authentication failed.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
+                            }
+                        }
                 }
+
+
+            }
+
+
         }
 
 

@@ -19,7 +19,8 @@ class KullaniciIslemleriActivity : AppCompatActivity() {
         }
 
         kullaniciBilgiGuncellemeSilme.setOnClickListener {
-            TODO()
+            val intent = Intent(this, KullaniciGuncellemeActivity::class.java)
+            startActivity(intent)
         }
 
     }

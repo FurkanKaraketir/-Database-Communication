@@ -10,6 +10,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class KullaniciTanimlamaActivity : AppCompatActivity() {
 
@@ -23,6 +25,7 @@ class KullaniciTanimlamaActivity : AppCompatActivity() {
         auth = Firebase.auth
 
         val db = Firebase.firestore
+        val hata = "Bu Alan Boş Bırakılamaz"
 
         val emailEditText = findViewById<TextInputLayout>(R.id.newUserEmailTextField)
         val passwordEditText = findViewById<TextInputLayout>(R.id.newUserPasswordTextField)
@@ -51,37 +54,103 @@ class KullaniciTanimlamaActivity : AppCompatActivity() {
             val adres = newUserAddressTextField.editText?.text.toString()
             val telefon = newUserPhoneNumberTextField.editText?.text.toString()
             val tip = newUserTypeTextField.editText?.text.toString()
-            val tarih = System.currentTimeMillis()
+            val tarih = LocalDateTime.now().format(DateTimeFormatter.ofPattern("d/M/y H:m:ss"))
 
-            auth.createUserWithEmailAndPassword(email, password)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        val user = hashMapOf(
-                            "ad" to ad,
-                            "adres" to adres,
-                            "email" to email,
-                            "gorev" to gorev,
-                            "irtibatTelNo" to telefon,
-                            "kayitTarihi" to tarih,
-                            "soyad" to soyad,
-                            "tip" to tip
-                        )
+            if (email.isEmpty()) {
+                emailEditText.error = hata
+            } else {
+                emailEditText.error = null
 
-                        db.collection("Kullanicilar")
-                            .add(user)
-                            .addOnSuccessListener {
-                                Toast.makeText(this, "Başarılı...", Toast.LENGTH_SHORT).show()
-                                val intent = Intent(this, KullaniciIslemleriActivity::class.java)
-                                startActivity(intent)
-                                finish()
-                            }
-                            .addOnFailureListener {
-                                Toast.makeText(this, "Hata...", Toast.LENGTH_SHORT).show()
-                            }
+                if (password.isEmpty()) {
+                    passwordEditText.error = hata
+                } else {
+                    passwordEditText.error = null
+
+                    if (ad.isEmpty()) {
+                        newUserNameTextField.error = hata
                     } else {
-                        Toast.makeText(this, "Hata...", Toast.LENGTH_SHORT).show()
+                        newUserNameTextField.error = null
+
+                        if (soyad.isEmpty()) {
+                            newUserLastnameTextField.error = hata
+                        } else {
+                            newUserLastnameTextField.error = null
+                            if (gorev.isEmpty()) {
+                                newUserMissionTextField.error = hata
+                            } else {
+                                newUserMissionTextField.error = null
+                                if (adres.isEmpty()) {
+                                    newUserAddressTextField.error = hata
+                                } else {
+                                    newUserAddressTextField.error = null
+                                    if (telefon.isEmpty()) {
+                                        newUserPhoneNumberTextField.error = hata
+                                    } else {
+                                        newUserPhoneNumberTextField.error = null
+                                        if (tip.isEmpty()) {
+                                            newUserTypeTextField.error = hata
+                                        } else {
+                                            newUserTypeTextField.error = null
+
+                                            auth.createUserWithEmailAndPassword(email, password)
+                                                .addOnCompleteListener(this) { task ->
+                                                    if (task.isSuccessful) {
+                                                        val user = hashMapOf(
+                                                            "ad" to ad,
+                                                            "adres" to adres,
+                                                            "email" to email,
+                                                            "gorev" to gorev,
+                                                            "irtibatTelNo" to telefon,
+                                                            "kayitTarihi" to tarih,
+                                                            "soyad" to soyad,
+                                                            "tip" to tip
+                                                        )
+
+                                                        db.collection("Kullanicilar")
+                                                            .add(user)
+                                                            .addOnSuccessListener {
+                                                                Toast.makeText(
+                                                                    this,
+                                                                    "Başarılı...",
+                                                                    Toast.LENGTH_SHORT
+                                                                ).show()
+                                                                val intent = Intent(
+                                                                    this,
+                                                                    KullaniciIslemleriActivity::class.java
+                                                                )
+                                                                startActivity(intent)
+                                                                finish()
+                                                            }
+                                                            .addOnFailureListener {
+                                                                Toast.makeText(
+                                                                    this,
+                                                                    "Hata...",
+                                                                    Toast.LENGTH_SHORT
+                                                                ).show()
+                                                            }
+                                                    } else {
+                                                        Toast.makeText(
+                                                            this,
+                                                            "Hata...",
+                                                            Toast.LENGTH_SHORT
+                                                        ).show()
+                                                    }
+                                                }
+                                        }
+
+                                    }
+                                }
+
+                            }
+                        }
+
                     }
+
                 }
+
+            }
+
+
         }
 
     }
