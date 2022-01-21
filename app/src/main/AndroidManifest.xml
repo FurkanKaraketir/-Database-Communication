@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.NecatDerneği">
         <activity
+            android:name=".KulaniciBilgiDegistirmeActivity"
+            android:exported="false" />
+        <activity
             android:name=".KullaniciGuncellemeActivity"
             android:exported="false" />
         <activity

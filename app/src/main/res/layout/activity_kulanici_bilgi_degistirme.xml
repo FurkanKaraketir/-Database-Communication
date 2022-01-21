@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".KullaniciTanimlamaActivity">
+    tools:context=".KulaniciBilgiDegistirmeActivity">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,52 +21,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:text="@string/yeni_kullan_c_bilgileri"
+                android:text="@string/kullan_c_bilgileri"
                 android:textAlignment="center"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/newUserEmailTextField"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="35dp"
-                android:hint="@string/email">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/newUserEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textEmailAddress" />
-
-            </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/newUserPasswordTextField"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="35dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="35dp"
-                android:hint="@string/ifre"
-                app:endIconMode="password_toggle">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/newUserPasswordEditText"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPassword" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/newUserNameTextField"
+                android:id="@+id/oldUserNameTextField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 android:layout_width="match_parent"
@@ -77,14 +39,14 @@
                 android:hint="@string/ad">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/newUserNameEditText"
+                    android:id="@+id/oldUserNameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/newUserLastnameTextField"
+                android:id="@+id/oldUserLastnameTextField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 android:layout_width="match_parent"
@@ -95,14 +57,14 @@
                 android:hint="@string/soyad">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/newUserLastnameEditText"
+                    android:id="@+id/oldUserLastnameEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/newUserMissionTextField"
+                android:id="@+id/oldUserMissionTextField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 android:layout_width="match_parent"
@@ -115,14 +77,14 @@
                 app:helperTextEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/newUserMissionEditText"
+                    android:id="@+id/oldUserMissionEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/newUserAddressTextField"
+                android:id="@+id/oldUserAddressTextField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 android:layout_width="match_parent"
@@ -133,14 +95,14 @@
                 android:hint="@string/adres">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/newUserAddressEditText"
+                    android:id="@+id/oldUserAddressEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/newUserPhoneNumberTextField"
+                android:id="@+id/oldUserPhoneNumberTextField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 android:layout_width="match_parent"
@@ -153,14 +115,14 @@
                 app:helperTextEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/newUserPhoneNumberEditText"
+                    android:id="@+id/oldUserPhoneNumberEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/newUserTypeTextField"
+                android:id="@+id/oldUserTypeTextField"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 
                 android:layout_width="match_parent"
@@ -173,18 +135,18 @@
                 app:helperTextEnabled="true">
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/newUserTypeEditText"
+                    android:id="@+id/oldUserTypeEditText"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <Button
-                android:id="@+id/newUserSaveButton"
+                android:id="@+id/oldUserSaveButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="35dp"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="20dp"
                 android:layout_marginEnd="35dp"
                 android:layout_marginBottom="35dp"
                 android:text="@string/kaydet" />

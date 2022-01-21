@@ -14,6 +14,7 @@ import com.google.firebase.ktx.Firebase
 
 class Menu : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
+    private var sistemYoneticileriList = ArrayList<String>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +25,7 @@ class Menu : AppCompatActivity() {
             currentUserEmail = auth.currentUser!!.email.toString()
         }
         var adminEmail = ""
+        var yoneticiBoolean = false
 
         val aileBilgileriButton = findViewById<Button>(R.id.aileBilgileriButton)
         val yardimlarVeDagitimButton = findViewById<Button>(R.id.yardimlarVeDagitimButton)
@@ -40,7 +42,7 @@ class Menu : AppCompatActivity() {
                 for (document in result) {
                     if (document["tip"].toString() == "Sistem Yöneticisi") {
                         adminEmail = document["email"].toString()
-
+                        sistemYoneticileriList.add(adminEmail)
                     }
                 }
             }
@@ -62,13 +64,20 @@ class Menu : AppCompatActivity() {
         }
 
         kullaniciIslemleriButton.setOnClickListener {
-            if (currentUserEmail == adminEmail) {
-                val intent = Intent(this, KullaniciIslemleriActivity::class.java)
-                startActivity(intent)
-            } else {
-                Toast.makeText(applicationContext, "Yetkili Değilsiniz...", Toast.LENGTH_SHORT)
-                    .show()
+
+            for (yonetici in sistemYoneticileriList) {
+                if (currentUserEmail == yonetici) {
+                    yoneticiBoolean = true
+                    val intent = Intent(this, KullaniciIslemleriActivity::class.java)
+                    startActivity(intent)
+                }
             }
+
+            if (!yoneticiBoolean) {
+                Toast.makeText(this, "Yetkili Değilsiniz...", Toast.LENGTH_SHORT).show()
+            }
+
+
         }
 
     }
